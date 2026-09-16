@@ -32,7 +32,7 @@ class TicketServiceTest {
     @InjectMocks private TicketService ticketService;
 
     @Test
-    void issue_decreasesTicketStockAndSavesIssuedTicket() {
+    void 티켓_발급_시_재고차감_발급_내역_저장() {
         Ticket ticket = Ticket.create("concert", 2);
         given(ticketRepository.findById(1L)).willReturn(Optional.of(ticket));
         given(userRepository.findById(10L)).willReturn(Optional.of(User.create()));
@@ -44,7 +44,7 @@ class TicketServiceTest {
     }
 
     @Test
-    void issue_whenStockIsInsufficient_throwsAndDoesNotSaveIssuedTicket() {
+    void 티켓_재고_부족() {
         Ticket ticket = Ticket.create("concert", 0);
         given(ticketRepository.findById(1L)).willReturn(Optional.of(ticket));
         given(userRepository.findById(10L)).willReturn(Optional.of(User.create()));
@@ -57,7 +57,7 @@ class TicketServiceTest {
     }
 
     @Test
-    void findTicket_returnsTicketFoundById() {
+    void 티켓_조회_성공() {
         Ticket ticket = Ticket.create("concert", 100);
         given(ticketRepository.findById(1L)).willReturn(Optional.of(ticket));
 
@@ -65,7 +65,7 @@ class TicketServiceTest {
     }
 
     @Test
-    void findTicket_whenTicketDoesNotExist_throwsException() {
+    void 잘못된_티켓_조회() {
         given(ticketRepository.findById(1L)).willReturn(Optional.empty());
 
         assertThatThrownBy(() -> ticketService.findTicket(1L))
@@ -73,7 +73,7 @@ class TicketServiceTest {
     }
 
     @Test
-    void createTicket_initializesStockAndReturnsSavedId() {
+    void 티켓_생성() {
         Ticket persistedTicket = mock(Ticket.class);
         given(persistedTicket.getId()).willReturn(1L);
         given(ticketRepository.save(any(Ticket.class))).willReturn(persistedTicket);
