@@ -1,4 +1,4 @@
-package com.project.ticketing;
+package com.project.ticketing_concurrency_lab;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
