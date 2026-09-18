@@ -21,7 +21,7 @@ public class TicketService {
     @Transactional
     public void issue(Long ticketId, Long userId) {
 
-        Ticket ticket = ticketRepository.findById(ticketId).orElseThrow();
+        Ticket ticket = ticketRepository.findByIdWithLock(ticketId).orElseThrow();
         User user = userRepository.findById(userId).orElseThrow();
         ticket.decreaseStock(1);
         issuedTicketRepository.save(IssuedTicket.createIssued(ticket,user));

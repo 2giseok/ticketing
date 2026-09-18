@@ -104,7 +104,7 @@ class TicketServiceConcurrencyTest {
 
         System.out.println("issuedCount = " + issuedCount);
         System.out.println("ticket.count ="+ ticket.getQuantityTicket());
-        assertThat(issuedCount).isGreaterThan(TICKET_STOCK);
-        assertThat(ticket.getQuantityTicket()).isGreaterThanOrEqualTo(0);
+        assertThat(issuedCount).isEqualTo(100);
+        assertThat(ticket.getQuantityTicket()).isEqualTo(0);
     }
 }
