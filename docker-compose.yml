@@ -12,5 +12,13 @@ services:
       MYSQL_ROOT_PASSWORD: root-password
     volumes:
       - mysql-data:/var/lib/mysql
+  rabbitmq:
+    image: "rabbitmq:latest"
+    container_name: "rabbitmq"
+    environment:
+      RABBITMQ_DEFAULT_PASS: password
+      RABBITMQ_DEFAULT_USER: user
+    ports:
+      - "5672:5672"
 volumes:
   mysql-data:
