@@ -1,8 +1,8 @@
 version: '3.6'
 services:
-  mysql:
+  mysql-a:
     image: mysql:8.4
-    container_name: ticketing-mysql
+    container_name: ticketing
     ports:
       - "3306:3306"
     environment:
@@ -11,7 +11,27 @@ services:
       MYSQL_PASSWORD: ticketing-password
       MYSQL_ROOT_PASSWORD: root-password
     volumes:
-      - mysql-data:/var/lib/mysql
+      - mysql-a-data:/var/lib/mysql
+  rabbitmq:
+    image: "rabbitmq:latest"
+    container_name: "rabbitmq"
+    environment:
+      RABBITMQ_DEFAULT_PASS: password
+      RABBITMQ_DEFAULT_USER: user
+    ports:
+      - "5672:5672"
+  mysql-issue:
+    image: mysql:8.4
+    container_name: ticketing-issue
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: ticketing-issue
+      MYSQL_USER: ticketing
+      MYSQL_PASSWORD: ticketing-password
+      MYSQL_ROOT_PASSWORD: root-password
+    volumes:
+      - mysql-issue-data:/var/lib/mysql
   rabbitmq:
     image: "rabbitmq:latest"
     container_name: "rabbitmq"
@@ -21,4 +41,5 @@ services:
     ports:
       - "5672:5672"
 volumes:
-  mysql-data:
+  mysql-a-data:
+  mysql-issue-data:
