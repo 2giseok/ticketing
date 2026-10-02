@@ -1,12 +1,17 @@
-spring:
+app:
   datasource:
-    url: jdbc:mysql://localhost:3306/ticketing?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: ticketing
-    password: ticketing-password
-
+    mysql-a:
+      url: jdbc:mysql://localhost:3306/ticketing?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      username: ticketing
+      password: ticketing-password
+    mysql-issue:
+      url: jdbc:mysql://localhost:3307/ticketing-issue?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      username: ticketing
+      password: ticketing-password
+spring:
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
   rabbitmq:
     password: password
     username: user
