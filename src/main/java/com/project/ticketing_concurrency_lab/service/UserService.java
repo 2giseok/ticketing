@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserService {
 
     private final UserRepository userRepository;
 
 
-    @Transactional
     public List<Long> createUser(int count) {
 
         return IntStream.range(0, count)
