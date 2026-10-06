@@ -43,12 +43,6 @@ class TicketServiceConcurrencyTest {
         this.issuedTicketRepository = issuedTicketRepository;
     }
 
-    @AfterEach
-    void setup() {
-        issuedTicketRepository.deleteAll();
-        userRepository.deleteAll();
-        ticketRepository.deleteAll();
-    }
 
     @Test
     void 동시성_테스트() throws Exception {

@@ -21,7 +21,7 @@ public class TicketConsumer {
                 message.ticketId(),
                 message.userId()
         );
-    } catch (IllegalStateException e) {
+    } catch (Exception e) {
         log.info("재고 부족");
     }
     }

@@ -29,6 +29,7 @@ public class DataSourceConfig {
                 .type(HikariDataSource.class)
                 .build();
     }
+
     @Bean
     @ConfigurationProperties("app.datasource.mysql-b")
     public DataSourceProperties mysqlBProperties() {
@@ -49,6 +50,7 @@ public class DataSourceConfig {
 
 
     }
+
     @Bean
     @Primary
     public DataSource dataSource(

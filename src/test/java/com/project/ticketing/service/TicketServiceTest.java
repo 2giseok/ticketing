@@ -7,6 +7,8 @@ import com.project.ticketing_concurrency_lab.repository.IssuedTicketRepository;
 import com.project.ticketing_concurrency_lab.repository.TicketRepository;
 import com.project.ticketing_concurrency_lab.repository.UserRepository;
 import com.project.ticketing_concurrency_lab.service.TicketService;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -29,12 +31,13 @@ class TicketServiceTest {
     @Mock private TicketRepository ticketRepository;
     @Mock private UserRepository userRepository;
     @Mock private IssuedTicketRepository issuedTicketRepository;
+
     @InjectMocks private TicketService ticketService;
 
     @Test
     void 티켓_발급_시_재고차감_발급_내역_저장() {
         Ticket ticket = Ticket.create("concert", 2);
-        given(ticketRepository.findById(1L)).willReturn(Optional.of(ticket));
+        given(ticketRepository.findByIdWithLock(1L)).willReturn(Optional.of(ticket));
         given(userRepository.findById(10L)).willReturn(Optional.of(User.create()));
 
         ticketService.issue(1L, 10L);
@@ -46,7 +49,7 @@ class TicketServiceTest {
     @Test
     void 티켓_재고_부족() {
         Ticket ticket = Ticket.create("concert", 0);
-        given(ticketRepository.findById(1L)).willReturn(Optional.of(ticket));
+        given(ticketRepository.findByIdWithLock(1L)).willReturn(Optional.of(ticket));
         given(userRepository.findById(10L)).willReturn(Optional.of(User.create()));
 
         assertThatThrownBy(() -> ticketService.issue(1L, 10L))
