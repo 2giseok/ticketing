@@ -4,8 +4,8 @@ app:
       url: jdbc:mysql://localhost:3306/ticketing?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
       username: ticketing
       password: ticketing-password
-    mysql-issue:
-      url: jdbc:mysql://localhost:3307/ticketing-issue?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    mysql-b:
+      url: jdbc:mysql://localhost:3307/ticketing?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
       username: ticketing
       password: ticketing-password
 spring:
