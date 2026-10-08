@@ -1,4 +1,5 @@
 <img width="923" height="276" alt="image" src="https://github.com/user-attachments/assets/f69a035e-8f49-4cf3-899a-81c96307be7f" />
+
 ## 티켓 발급 동시성 제어 및 비동기 처리
 
 초과 발급 문제를 재현하고 비관적 락 ,비동기 메시지 처리 읽기,쓰기 분리를 단계적으로 구현
